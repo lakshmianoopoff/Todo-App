@@ -1,0 +1,423 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-page: #7b9475;
+  --bg-outer-card: #94a98c;
+  --bg-dark-card: #15331d;
+  --bg-input: #102616;
+  --bg-task-item: #738b6d;
+  --bg-task-item-hover: #7d9677;
+  --bg-task-completed: #5c7257;
+  --bg-button: #7d9777;
+  --bg-button-hover: #8aa683;
+
+  --text-dark: #17341f;
+  --text-white: #ffffff;
+  --text-muted-light: #adc4a6;
+  --border-input: #62795d;
+
+  --font-heading: 'Fredoka', cursive, sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-page);
+  color: var(--text-dark);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* Outer Card Container */
+.main-wrapper {
+  position: relative;
+  background-color: var(--bg-outer-card);
+  border-radius: 28px;
+  padding: 48px 56px;
+  box-shadow: 0 20px 50px rgba(18, 38, 23, 0.18);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Decorative Dot Matrices */
+.dot-grid-top-left {
+  position: absolute;
+  top: 28px;
+  left: 28px;
+  display: grid;
+  grid-template-columns: repeat(4, 7px);
+  grid-template-rows: repeat(5, 7px);
+  gap: 8px;
+}
+
+.dot-grid-top-left span {
+  width: 7px;
+  height: 7px;
+  background-color: var(--text-dark);
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+.dot-row-bottom-left {
+  position: absolute;
+  bottom: 32px;
+  left: 36px;
+  display: flex;
+  gap: 12px;
+}
+
+.dot-row-bottom-left span {
+  width: 14px;
+  height: 14px;
+  background-color: var(--text-dark);
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+/* Left Hero Section */
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 3.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.1;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.hero-subtitle {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+  opacity: 0.95;
+}
+
+.hero-mascot-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.hero-mascot-img {
+  width: 290px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Right Task App Section (Dark Card) */
+.app-card {
+  background-color: var(--bg-dark-card);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+  z-index: 1;
+}
+
+.app-card-title {
+  font-family: var(--font-heading);
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--text-white);
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: 0.02em;
+}
+
+/* Task Input Row */
+.task-input-box {
+  display: flex;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-input);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.task-input-field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-white);
+  outline: none;
+}
+
+.task-input-field::placeholder {
+  color: var(--text-muted-light);
+  opacity: 0.75;
+}
+
+.task-input-btn {
+  background-color: var(--bg-button);
+  color: var(--text-white);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0 22px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease;
+}
+
+.task-input-btn:hover {
+  background-color: var(--bg-button-hover);
+}
+
+.task-input-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Task List */
+.task-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+/* Custom Scrollbar for dark card */
+.task-list-container::-webkit-scrollbar {
+  width: 5px;
+}
+.task-list-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.task-list-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+
+/* Task Sections & Subtitles */
+.task-section {
+  margin-bottom: 18px;
+}
+
+.section-subtitle {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-subtitle::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.task-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Task Item Card */
+.task-item-card {
+  background-color: var(--bg-task-item);
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background-color 150ms ease, opacity 150ms ease;
+}
+
+.task-item-card:hover {
+  background-color: var(--bg-task-item-hover);
+}
+
+.task-item-card.completed {
+  background-color: var(--bg-task-completed);
+}
+
+.task-item-card.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+
+.task-main-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+}
+
+/* Task Tick Button */
+.task-tick-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 150ms ease;
+  padding: 0;
+}
+
+.task-tick-btn:hover {
+  border-color: var(--text-white);
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.task-tick-btn.checked {
+  background-color: var(--text-white);
+  border-color: var(--text-white);
+  color: var(--bg-dark-card);
+}
+
+.task-text {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-white);
+  word-break: break-word;
+}
+
+/* Edit Mode Input */
+.task-edit-input {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--text-white);
+  border-radius: 4px;
+  padding: 6px 10px;
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+/* Action Buttons */
+.task-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.action-icon-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-white);
+  opacity: 0.9;
+  cursor: pointer;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.action-icon-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.action-icon-btn.delete:hover {
+  color: #ff9999;
+}
+
+.action-icon-btn.save:hover {
+  color: #a3ffb0;
+}
+
+/* Empty State */
+.empty-tasks-msg {
+  text-align: center;
+  color: var(--text-muted-light);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 40px 0;
+}
+
+/* Toast */
+.toast-msg {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--bg-dark-card);
+  border: 1px solid var(--bg-button);
+  color: var(--text-white);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Responsive breakpoint for mobile */
+@media (max-width: 860px) {
+  .main-wrapper {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+
+  .hero-section {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-mascot-img {
+    width: 220px;
+  }
+
+  .dot-grid-top-left {
+    display: none;
+  }
+}
