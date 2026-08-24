@@ -1,4 +1,25 @@
-const API_BASE = '/api/tasks/';
+const rawApiUrl = import.meta.env.VITE_API_URL;
+
+function getApiBase() {
+  if (rawApiUrl) {
+    const cleanUrl = rawApiUrl.replace(/\/+$/, '');
+    if (cleanUrl.endsWith('/api/tasks')) {
+      return `${cleanUrl}/`;
+    }
+    if (cleanUrl.endsWith('/api')) {
+      return `${cleanUrl}/tasks/`;
+    }
+    return `${cleanUrl}/api/tasks/`;
+  }
+
+  if (import.meta.env.DEV) {
+    return '/api/tasks/';
+  }
+
+  return 'https://todo-app-backend-h1pr.onrender.com/api/tasks/';
+}
+
+const API_BASE = getApiBase();
 
 export async function fetchTasks() {
   const res = await fetch(API_BASE, {
